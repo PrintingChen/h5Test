@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹性布局(flex)</title>
+    <style media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /*注意，设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。*/
+        #box{
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 50px auto;
+            /*padding: 10px;*/
+            display: -webkit-flex;
+            display: -ms-flex;
+            display: flex;
+
+            /*子元素的排列方式*/
+            flex-direction: row;
+            /*flex-direction: column;
+            flex-direction: row-reverse;
+            flex-direction: column-reverse;*/
+
+            /*如何换行*/
+            flex-wrap: wrap; /*换行， 第一行在上面*/
+            /*flex-wrap: nowrap;*/ /*不换行*/
+            /*flex-wrap: wrap-reverse;*/ /*换行， 第一行在下面*/
+
+            /*项目的对齐方式（水平方式）*/
+            /*左对齐*/
+            /*justify-content: flex-start; */
+            /*右对齐*/
+            /*justify-content: flex-end;  */
+            /*居中对齐*/
+            /*justify-content: center;    */
+            /*两端对齐*/
+            /*justify-content: space-between;  */
+            /*每个项目两侧的间隔相等*/
+            /*justify-content: space-around;   */
+
+            /*项目高度不同时的对齐方式（垂直方向）*/
+            /*align-items: flex-start;
+            align-items: flex-end;
+            align-items: center;
+            align-items: baseline;
+            align-items: stretch;*/
+        }
+        #box .c{
+            /*flex: 1;*/
+            /*height: 50%;*/
+            /*margin: 0 5px;*/
+            width: 120px;
+            flex: none;
+        }
+        #box .c1{
+            /*flex: 2;*/
+            background-color: #00f;
+            /*flex-basis: 200px;*/
+            /*height: 50%;*/
+            /*order: 3;*/
+        }
+        #box .c2{
+            /*flex: 3;*/
+            background-color: #0f0;
+            /*height: 60%;*/
+            /*order: 5;*/
+        }
+        #box .c3{
+            /*flex: 3;*/
+            background-color: #f00;
+            /*height: 30%;*/
+            /*order: 4;*/
+        }
+        #box .c4{
+            /*flex: 2;*/
+            background-color: #ff0;
+            /*height: 80%;*/
+            /*order: 2;*/
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="c c1">c1</div>
+        <div class="c c2">c2</div>
+        <div class="c c3">c3</div>
+        <div class="c c4">c4</div>
+    </div>
+</body>
+</html>

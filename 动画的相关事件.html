@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			position: absolute;
+			top: 0;
+			left: 0;
+			animation: ani 5s linear 5;
+		}
+		@keyframes ani{
+			0%{border-radius: 0; top: 0; left: 0; background-color: #f00;}
+			25%{border-radius: 25%; top: 0; left: 300px; background-color: #ff0;}
+			50%{border-radius: 50%; top: 300px; left: 300px; background-color: #0ff;}
+			75%{border-radius: 25%; top: 300px; left: 0; background-color: #f0f;}
+			100%{border-radius: 0; top: 0; left: 0; background-color: #00f;}
+		}
+	</style>
+</head>
+<body>
+	<br><br><br><br><br><br><br>
+	<span id="count">0</span>
+	<div id="box"></div>
+
+	<script>
+		var oBox = document.getElementById('box');
+		var oSpan = document.getElementById('count');
+		var i = 1;
+		oBox.addEventListener('animationstart', function(){
+			console.log('start');
+		}, false);
+		oBox.addEventListener('animationiteration', function(){
+			console.log('iteration');
+			oSpan.innerHTML = i++;
+		}, false);
+		oBox.addEventListener('animationend', function(){
+			console.log('end');
+			oSpan.innerHTML = i;
+			alert('完成了'+i+'次动画了');
+		}, false);
+	</script>
+</body>
+</html>

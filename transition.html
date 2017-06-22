@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transition</title>
+    <style media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            margin: 50px auto;
+
+            transition: all 2s;
+            /*transition: width 2s, height 4s;*/
+            /*transition-property: width, height;*/
+            /*transition-duration: 2s;*/
+            /*transition-timing-function: ease;*/
+            /*transition-timing-function: ease-in;*/
+            /*transition-timing-function: ease-out;*/
+            /*transition-timing-function: cubic-bezier(0.9, 0.6, 0.2, 0.1);*/
+        }
+        .box:hover{
+            /*width: 200px;*/
+            /*height: 400px;*/
+        }
+        .box.click{
+            /*width: 200px;*/
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script type="text/javascript">
+        document.getElementsByClassName('box')[0].onclick = function(e){
+            this.className += ' click';
+            e.cancelBubble = true;
+        }
+        document.body.onclick = function(){
+            document.getElementsByClassName('box')[0].className = 'box';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			transition: 2s;
+		}
+		#box.click{
+			width: 200px;
+			height: 200px;
+			background-color: blue;
+		}
+		#wrap.on{
+			color: #ccc; 
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<div id="wrap">过度和动画</div>
+
+	<script>
+		var oBox = document.getElementById('box');
+		var oWrap = document.getElementById('wrap');
+		oBox.onclick = function(){
+			this.className = 'click';
+		}
+		oBox.addEventListener('transitionend', function(){
+			oWrap.className = 'on';
+		}, false);
+	</script>
+</body>
+</html>

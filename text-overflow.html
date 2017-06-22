@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>text-overflow</title>
+    <style media="screen">
+        p:nth-of-type(1){
+            /*单行超出时用省略号代替*/
+            width: 100px;
+            border: 1px solid #ccc;
+
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        p:nth-of-type(2){
+            /*多行超出时用省略号代替  （只能在chrome有效） */
+            width: 100px;
+            height: 100px;
+            line-height: 20px;
+            border: 1px solid #ccc;
+
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
+        }
+        p:nth-of-type(3){
+            width: 100px;
+            height: 100px;
+            line-height: 20px;
+            border: 1px solid #ccc;
+            position: relative;
+            overflow: hidden;
+        }
+        /*p:nth-of-type(3)::after{
+            content: '...';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 20px;
+            line-height: 20px;
+        }*/
+        .ell::after{
+            content: '...';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 20px;
+            line-height: 20px;
+            color: red;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <p>超出的文本就会被隐藏了，用省略号来替代了。</p>
+    <p>超出的文本就会被隐藏了，用省略号来替代了。超出的文本就会被隐藏了，用省略号来替代了。</p>
+    <p id='txt'>超出的文本就会被隐藏了，用省略号来替代了。超出的文本就会被隐藏了，用省略号来替代了。</p>
+    <script type="text/javascript">
+        var oP = document.getElementById('txt');
+        if (oP.scrollHeight > oP.clientHeight) {
+            oP.className = 'ell';
+        }else{
+            oP.className = '';
+        }
+    </script>
+</body>
+</html>

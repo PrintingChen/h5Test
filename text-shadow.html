@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>text-shadow</title>
+    <style media="screen">
+        p{
+            font-size: 30px;
+            font-family: 'Microsoft Yahei';
+            font-weight: 600;
+            /*文本的颠倒显示*/
+            /*direction: rtl;
+            unicode-bidi: bidi-override;*/
+        
+            /*文本阴影*/
+            /*text-shadow: 0 0 3px red, 2px 2px 5px blue;*/
+
+            /*描边*/
+            -webkit-text-stroke: 1px red;
+            color: #fff;
+        }
+        span{
+            /*大小写*/
+            /*text-transform: uppercase; */
+            text-transform: lowercase;
+            /*text-transform: capitalize;*/ /*首字母大写*/
+        }
+    </style>
+</head>
+<body>
+    <p>文本阴影</p>
+    <span>hello world! BIG</span>
+</body>
+</html>

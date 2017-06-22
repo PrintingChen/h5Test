@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单</title>
+	<style>
+		
+	</style>
+</head>
+<body>
+<!-- 
+	placeholder 
+	autofocus
+	autocomplete = on | off 默认on  (自动填充)
+	required
+	pattern
+	form 关联form以外的input
+	formaction 改变其中的提交地址（action）
+	formmethod 改变其中的提交方式（method）
+	multiple 选择多个文件
+ -->
+	<form action="">
+		<input type="text" pattern="\d+" required>
+		color: <input type="color" name="color" onchange="console.log(this.value);" required><br><br>
+		date: <input type="date" name="date"  required><br><br>
+		datetime: <input type="datetime" name="datetime" id="" required><br><br>
+		datetime-local: <input type="datetime-local" name="datetime-local" id="" required><br><br>
+		email: <input type="email" name="email" placeholder="this is email input" required autofocus autocomplete="on"><br><br>
+		email: <input type="email" name="email" placeholder="this is email input" required autofocus autocomplete="off"><br><br>
+		file: <input type="file" name="file" multiple required onchange="console.log(this.value);"><br><br>
+		image: <input type="image" name="image" width="100" height="50" ><br><br>
+		month: <input type="month" name="month" id="" ><br><br>
+		number: <input type="number" name="number" required ><br><br>
+		range: <input type="range" name="range" min="0" max="100" step="1" required ><br><br>
+		search: <input type="search" name="search" required ><br><br>
+		time: <input type="time" name="time" required ><br><br>
+		url: <input type="url" name="url" required ><br><br>
+		week: <input type="week" name="week" required ><br><br>
+
+		<input type="text" list="list">
+		<datalist id="list">
+			<option value="a">a</option>
+			<option value="b">b</option>
+			<option value="c">c</option>
+		</datalist>
+		
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>

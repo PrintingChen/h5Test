@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>border-radius</title>
+    <style media="screen">
+        *{margin: 0; padding: 0;}
+        .wrap{
+            position: relative;
+            /*overflow: hidden;*/
+            margin: 50px auto;
+            margin-left: 200px;
+            height: 115px;
+        }
+        .box{
+            width: 70px;
+            height: 115px;
+            /*margin: 50px auto;*/
+            /*border: 1px solid #ccc;*/
+            background-color: #f00;
+            /*border-radius: 5px;*/ /*四边*/
+            /*border-radius: 5px 10px;*/ /*上下 左右*/
+            /*border-radius: 5px 10px 15px;*/ /*上 左右 下*/
+            /*border-radius: 5px 10px 15px 20px;*/ /*上右下左*/
+            border-radius: 50% 50% 0% 0%; /*上右下左*/
+            position: absolute;
+        }
+        .box1{
+            transform: rotate(-48deg);
+            left: -30px;
+        }
+        .box2{
+            transform: rotate(48deg);
+            left: 8px;
+        }
+        .bgz{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-left: 200px;
+            margin-top: 100px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .halfcircle{
+            width: 50px;
+            height: 100px;
+            background-color: #000;
+            border-radius: 0 50px 50px 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .trhalfcircle{
+            width: 25px;
+            height: 50px;
+            border-radius: 0 25px 25px 0;
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            right: 25px;
+        }
+        .bhalfcircle{
+            width: 25px;
+            height: 50px;
+            border-radius: 25px 0 0 25px;
+            background-color: #000;
+            position: absolute;
+            left: 25px;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+    </div>
+    <div class="bgz">
+        <div class="halfcircle"></div>
+        <div class="trhalfcircle"></div>
+        <div class="bhalfcircle"></div>
+    </div>
+</body>
+</html>

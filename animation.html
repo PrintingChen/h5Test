@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animation</title>
+    <style media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            position: absolute;
+            left: 0;
+            top: 0;
+            /*animation: mymove 10s ease 1s 2 reverse;*/
+            animation: mymove 10s ease 1s 5 alternate;
+            /*animation: mymove 10s;*/
+            /*animation-fill-mode: forwards;*/ /*保留最后一帧*/
+        }
+        .click{
+            animation-play-state: paused;
+        }
+        @keyframes mymove{
+            /*from{}*/ /*相当于0%*/
+            /*to{}*/   /*相当于100%*/
+            0%{left: 0; top: 0;}
+            25%{left: 500px; top: 0; background-color: blue; border-radius: 10%;}
+            50%{left: 500px; top: 500px; background-color: green; border-radius: 2 border-radius: 10%;}
+            75%{left: 0; top: 500px; background-color: pink; border-radius: 40%;}
+            100%{left: 0; top: 0; background-color: green; border-radius: 50%;}
+
+            /*0%{left: 0; top: 0; background-color: blue; border-radius: 10%;}
+            33%{left: 500px; top: 0; background-color: green; border-radius: 2 border-radius: 10%;}
+            66%{left: 500px; top: 500px; background-color: pink; border-radius: 40%;}
+            100%{left: 0; top: 500px; background-color: green; border-radius: 50%;}*/
+        }
+        #blink{
+            font-size: 40px;
+            font-weight: bold;
+            -webkit-text-stroke: 1px #000;
+            color: #fff;
+            animation: blink 3s linear infinite;
+        }
+        @keyframes blink {
+            0%{text-shadow: 0 0 0px #fff;}
+            25%{text-shadow: 0 0 5px #f00;}
+            50%{text-shadow: 0 0 10px #ff0; font-size: 30px;}
+            75%{text-shadow: 0 0 15px #f0f;}
+            100%{text-shadow: 0 0 20px #0ff;}
+        }
+    </style>
+</head>
+<body>
+    <button type="button" id="btn1">暂停</button>
+    <button type="button" id="btn2">运行</button>
+    <div class="box"></div>
+
+    <p id="blink">闪烁字体</p>
+
+    <script type="text/javascript">
+        var box = document.getElementsByClassName('box')[0];
+        document.getElementById('btn1').onclick = function(){
+            box.className += ' click';
+        }
+        document.getElementById('btn2').onclick = function(){
+            box.className = 'box';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#box{
+			margin: 100px;
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			transform: rotate(0.523rad); /*弧度 rad*/
+			transform-origin: right bottom; /*变换基点(默认中心点)*/
+		}
+		#wrap{
+			width: 500px;
+			height: 500px;
+			border: 1px solid red;
+			margin: 100px auto 0;
+			perspective: 800px;
+		}
+		.inner{
+			width: 100px;
+			height: 100px;
+			background-color: #ccc;
+			transition: 1s;
+		}
+		.inner:hover{
+			transform: translateY(100px) rotateX(30deg); /*顺序特别重要*/
+			transform-style: preserve-3d;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div id="box"></div> -->
+	
+	<div id="wrap">
+		<div class="inner"></div>
+	</div>
+
+	<script>
+		var oBox = document.getElementById('box');
+		
+	</script>
+</body>
+</html>

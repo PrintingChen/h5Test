@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		ul{list-style: none;}
+		img{border: none;}
+		#box{
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 99999;
+		}
+		#wrap{
+			width: 400px;
+			height: 400px;
+			border: 2px dashed #abcdef;
+			margin-left: 200px;
+			margin-top: 200px;
+			position: relative;
+		}
+	</style>
+</head>
+<body>
+<!--  
+	contenteditable 是否可编辑
+	draggable 是否可拖动
+
+
+ -->
+	<!-- <img src="images/1.jpg" id="img"> -->
+	<!-- <div id="box" draggable="true" stay="handsome"></div> -->
+	<div id="wrap"></div>
+	<script src="js/jquery.js"></script>
+	<script>
+		// var $img = $('#img');
+		var $box = $('#box');
+		var $wrap = $('#wrap');
+		// var i = 0;
+		// var xS, yS;
+		// $img.on('dragstart', function(){
+		// 	// console.log(this);
+		// }).on('drag', function(e){
+		// 	// console.log(this);
+		// }).on('dragend', function(e){
+		// 	// console.log(this);
+		// });
+
+		// $box.on('dragstart', function(e){
+		// 	/*
+		// 		effectAllowed 改变被拖动的元素到目标时候鼠标的样式
+		// 		setDragImage(element,x,y):设置拖放操作的自定义图标。其中element设置自定义图标，x设置图标与鼠标在水平方向上的距离，y设置图标与鼠标在垂直方向上的距离。
+		// 	*/
+		// 	e.originalEvent.dataTransfer.setData('stay', $(this).attr('stay')); //让在firefox下也可以拖拽
+		// 	e.originalEvent.dataTransfer.effectAllowed = 'uninitialized';
+		// 	xS = e.originalEvent.clientX;
+		// 	yS = e.originalEvent.clientY;
+		// 	// console.log(this);
+		// 	// $(this).html('dragstart');
+		// }).on('drag', function(e){
+		// 	// console.log(this);
+		// 	// $(this).html(i++);
+		// }).on('dragend', function(e){
+		// 	// console.log(this);
+		// 	// $(this).html('dragend');
+		// 	var $this = $(this);
+		// 	var $offset = $this.offset();
+		// 	$this.css({
+		// 		// 'left': $offset.left+(e.originalEvent.clientX - xS)+"px",
+		// 		// 'top': $offset.top+(e.originalEvent.clientY - yS)+"px"
+		// 	});
+		// });
+
+		$wrap.on('dragenter', function(){
+			$(this).css('borderColor', 'red');
+			// $box.css({
+			// 	'left': 0,
+			// 	'top': 0
+			// });
+			// console.log('dragenter');
+		}).on('dragover', function(e){
+			// console.log('dragover');
+			e.preventDefault(); //阻止默认行为（不是阻止冒泡事件）
+			// return false; //用来阻止默认的行为和冒泡，之后才能触发drop事件
+		}).on('dragleave', function(){
+			$(this).css('borderColor', '#abcdef');
+			// $box = $box.remove();
+			// $('body').append($box);
+			// console.log('dragleave');
+		}).on('drop', function(e){  //需要阻止默认行为才能触发drop事件
+			$(this).css('borderColor', '#abcdef');
+			// $(this).append($box);
+			// console.log('drop');
+			// var val = e.originalEvent.dataTransfer.getData('stay'); //让在firefox下也可以拖拽
+			// console.log(val);
+
+			//外部拖入
+			var files = e.originalEvent.dataTransfer.files;
+			$.each($(files), function(){
+				var fileType = this.type;
+				if (/image/.test(fileType)) {
+					var objFile = new FileReader();
+					objFile.readAsDataURL(this);
+					objFile.onload = function(){
+						var res = this.result;
+						var oImg = new Image();
+						oImg.src = res;
+						oImg.width = 248;
+						oImg.height = 100;
+						$wrap.append(oImg);
+					}
+				}else{
+					console.log('upload file is not image')
+				}
+			});
+			// console.log(files[0].name);
+			/*
+				text/html (.html)
+				application/x-msdownload (.exe)
+				image/jpeg (img)
+				XXXX.lnk   (快捷方式)
+				application/pdf  （pdf）
+				video/x-ms-wmv   (视频)
+				application/msword （word）
+			*/
+			// console.log(files[0].type); 
+			// console.log(files[0].size);
+
+			// var objFile = new FileReader();
+			// objFile.readAsDataURL(files[0]); //读取文件为DataURL 
+			// objFile.onload = function(){
+			// 	var res = this.result;
+			// 	console.log(res);
+			// 	// var img = new Image();
+			// 	// img.src = res;
+			// 	// img.width = '100';
+			// 	// img.height = '150';
+			// 	// $wrap.append(img);
+			// }
+			e.originalEvent.preventDefault();
+
+		});
+		
+	</script>
+</body>
+</html>

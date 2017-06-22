@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>禁止选中文本</title>
+	<style>
+		p{ 
+			user-select: none; 
+			-moz-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			/*
+				IE11以下就需要使用onselectstart="return false",
+				但是从外面开始选起，则还是可以被选中
+			*/
+		}
+	</style>
+</head>
+<body>
+	<p>这里使用user-select: none;设置了不能选中文本</p>
+	<div>这里设置了可以选中文本</div>
+	<p onselectstart="return false">使用onselectstart禁止选中</p>
+</body>
+</html>

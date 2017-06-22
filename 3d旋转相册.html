@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d旋转相册</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			height: 100%;
+		}
+		body{
+			perspective: 800px;
+			overflow: hidden;
+			background-color: #000;
+		}
+		ul{list-style: none;}
+		img{border:0; display: inline-block;}
+		#box{
+			width: 100px;
+			height: 150px;
+			position: absolute;
+			top: 45%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotateX(-15deg) rotateY(0deg);
+			transform-style: preserve-3d;
+		}
+		#box ul{
+			width: 100px;
+			height: 100px;
+			overflow: hidden;
+		}
+		#box ul li{
+			width: 100px;
+			height: 150px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			overflow: hidden;
+			-webkit-box-reflect:below 5px -webkit-linear-gradient(top, rgba(0,0,0,0) 40%, rgba(0,0,0,.5) 100%);
+		}
+		#box ul li img{
+			width: 100px;
+			height: 150px;
+		}
+		#box p{
+			width: 700px;
+			height: 700px;
+			position: absolute;
+			left: 50%;
+			top: 100%;
+			margin-left: -350px;
+			margin-top: -350px;
+			transform: rotateX(90deg);
+			border-radius: 50%;
+			background:-webkit-radial-gradient(center center,600px 600px,rgba(255,122,141,.1),rgba(0,0,0,0));
+		}
+		.path{
+			width: 5px;
+			height: 5px;
+			background-color: #f00;
+			position: absolute;
+			left: 0;
+			top:0;
+		}
+	</style>
+</head>
+<body onselectstart="return false">
+	<div id="box">
+		<ul>
+			<li><img src="images/1.jpg" ondragstart="return false"></li>
+			<li><img src="images/2.jpg" ondragstart="return false"></li>
+			<li><img src="images/3.jpg" ondragstart="return false"></li>
+			<li><img src="images/4.jpg" ondragstart="return false"></li>
+			<li><img src="images/5.jpg" ondragstart="return false"></li>
+			<li><img src="images/6.jpg" ondragstart="return false"></li>
+			<li><img src="images/7.jpg" ondragstart="return false"></li>
+			<li><img src="images/8.jpg" ondragstart="return false"></li>
+			<li><img src="images/9.jpg" ondragstart="return false"></li>
+			<li><img src="images/10.jpg" ondragstart="return false"></li>
+			<li><img src="images/11.jpg" ondragstart="return false"></li>
+		</ul>
+		<p></p>
+	</div>
+
+	<script>
+		var oBox = document.getElementById('box');
+		var oLi = oBox.getElementsByTagName('li');
+		var len = oLi.length;
+		var Deg = 360 / 11;
+		var roX = -15, roY = 0;
+		var xs,ys,xn,yn,x_,y_,xu,yu,xl,yl,timer;
+
+		for(var i=0; i<len; i++){
+			oLi[i].style.transform = 'rotateY('+ Deg*i +'deg) translateZ(350px)';
+		}
+
+		document.body.onmousedown = function(e){
+			clearInterval(timer);
+			var e = e || event;
+			xs = e.pageX;
+			ys = e.pageY;
+
+			document.body.onmousemove = function(e){
+				var e = e || event;
+				xn = e.pageX;
+				yn = e.pageY;
+
+				xu = xn - xl;
+				yu = yn - yl;
+
+				x_ = (xn - xs)*0.15;
+				y_ = (yn - ys)*0.15;
+				oBox.style.transform = 'translate(-50%, -50%) rotateX('+ (roX-y_) +'deg) rotateY('+ (roY+x_) +'deg)';
+
+				var oDiv = document.createElement('div');
+				oDiv.className = 'path';
+				oDiv.style.left = xn+'px';
+				oDiv.style.top = yn+'px';
+				document.body.appendChild(oDiv);
+
+				xl = e.pageX;
+				yl = e.pageY;
+			}
+			document.body.onmouseup = function(){
+				roX = roX-y_;
+				roY = roY+x_;
+
+				timer = setInterval(function(){
+					xu *= 0.95;
+					yu *= 0.95;
+					roX -= yu*0.3;
+					roY += xu*0.1;
+					if (Math.abs(xu) <= 0.1 && Math.abs(yu) <= 0.1) {
+						clearInterval(timer);
+					}
+					oBox.style.transform = 'translate(-50%, -50%) rotateX('+ roX +'deg) rotateY('+ roY +'deg)';
+				}, 20);
+				document.body.onmousemove = null;
+			}
+		}
+
+	</script>
+</body>
+</html>
